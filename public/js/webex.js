@@ -6,19 +6,38 @@ let maxHeight = 166.5;
 initializePage();
 
 function initializePage() {
+    stylizedConsoleLog();
+    setUpWindowSize();
+    container.addEventListener('mouseenter', mouseEnterHandler);
+    container.addEventListener('mousemove', mouseMoveHandler);
+    container.addEventListener('mouseleave', mouseLeaveHandler);
+}
+
+function stylizedConsoleLog() {
+    const stylizedString = `
+                                                            ______
+    \\\\\\\\  ////  ||||  ||||  \\\\\\\\  ////  ||||   ////\\\\\\\\    /      \\
+     \\\\\\\\////   ||||  ||||   \\\\\\\\////   ||||  ||||  ||||  ||||  ||||
+      \\||||/    ||||  ||||    \\\\\\///    ||||  ||||__||||  ||||  ||||
+       ||||     ||||  ||||    ///\\\\\\    ||||  ||||__||||  ||||  ||||
+       ||||     \\\\\\\\__////   ////\\\\\\\\   ||||  ||||  ||||  ||||  ||||
+       ||||      \\______/   ////  \\\\\\\\  ||||  ||||  ||||   \\______/
+
+       Github:   https://www.github.com/YuxiaoRan
+       LinkedIn: https://www.linkedin.com/in/yuxiao-ran
+    `;
+    console.log(stylizedString);
+}
+
+function setUpWindowSize() {
     const width = window.innerWidth || document.documentElement.clientWidth || 
             document.body.clientWidth;
     const height = window.innerHeight|| document.documentElement.clientHeight|| 
             document.body.clientHeight;
-    console.log(width, height);
     if (width >= maxWidth || height >= maxHeight) {
         maxWidth = width;
         maxHeight = maxWidth / 1640 * 166.5;
     }
-    console.log(maxWidth, maxHeight);
-    container.addEventListener('mouseenter', mouseEnterHandler);
-    container.addEventListener('mousemove', mouseMoveHandler);
-    container.addEventListener('mouseleave', mouseLeaveHandler);
 }
 
 function mouseEnterHandler(e) {
