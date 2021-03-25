@@ -1,11 +1,21 @@
 const container = document.querySelector('.container');
 const images = document.querySelectorAll('img');
-const maxWidth = 1640;
-const maxHeight = 166.5;
+let maxWidth = 1640;
+let maxHeight = 166.5;
 
 initializePage();
 
 function initializePage() {
+    const width = window.innerWidth || document.documentElement.clientWidth || 
+            document.body.clientWidth;
+    const height = window.innerHeight|| document.documentElement.clientHeight|| 
+            document.body.clientHeight;
+    console.log(width, height);
+    if (width >= maxWidth || height >= maxHeight) {
+        maxWidth = width;
+        maxHeight = maxWidth / 1640 * 166.5;
+    }
+    console.log(maxWidth, maxHeight);
     container.addEventListener('mouseenter', mouseEnterHandler);
     container.addEventListener('mousemove', mouseMoveHandler);
     container.addEventListener('mouseleave', mouseLeaveHandler);
@@ -36,7 +46,8 @@ function mouseMoveHandler(e) {
 
     // image3: bridge
     const translate_3 = -637 - (441 * disX / maxWidth);
-    images[3].style.transform = `scale(1) translate(${translate_3}px, 0px) rotate(0deg)`;
+    const translate_3_regularized = (translate_3 > -125) ? -125 : translate_3;
+    images[3].style.transform = `scale(1) translate(${translate_3_regularized}px, 0px) rotate(0deg)`;
 
     // image4: boats
     const translate_4 = 607.5 - (112.5 * disX / maxWidth);
